@@ -1,7 +1,7 @@
-var D2R = 0.01745329251994329577;
-import parser from './parser';
-import {sExpr} from './process';
+import parser from './parser.js';
+import {sExpr} from './process.js';
 
+const D2R = 0.01745329251994329577;
 
 
 function rename(obj, params) {

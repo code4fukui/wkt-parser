@@ -1,14 +1,12 @@
-var test = require('tape');
-import compare from 'js-struct-compare';
-var wktParser = require('./wkt.build.js');
-var fixtures = require('./test-fixtures.json');
+import * as t from "https://deno.land/std/testing/asserts.ts";
+import compare from 'https://code4fukui.github.io/js-struct-compare/src/index.mjs';
+import wktParser from "./index.js";
+import fixtures from "./test-fixtures.json" assert { type: "json" };
 
-fixtures.forEach((item, i)=>{
-  test(`fixture ${i + 1}`, t=>{
-    var out = wktParser(item.code);
-    //console.log(JSON.stringify(out, null, 2));
+Deno.test("test", () => {
+  fixtures.forEach(item => {
+    const out = wktParser(item.code);
     const diff = JSON.stringify(compare(item.value, JSON.parse(JSON.stringify(out))), null, 2);
-    t.equal(diff, '[]');
-    t.end();
-  });
-})
+    t.assertEquals(diff, "[]");
+  })
+});
